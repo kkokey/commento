@@ -17,17 +17,23 @@
     "@vue/cli-service": "^3.9.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
+    "prettier": "^1.18.2",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
     "env": {
+      "es6": true,
       "node": true
     },
     "extends": [
+      "airbnb-base",
       "plugin:vue/essential",
-      "eslint:recommended"
+      "plugin:prettier/recommended"
     ],
     "rules": {},
     "parserOptions": {
