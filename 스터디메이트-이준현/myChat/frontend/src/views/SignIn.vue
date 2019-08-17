@@ -1,20 +1,20 @@
 <template>
   <div class="login">
     <loginBar></loginBar>
-    <loginForm></loginForm>
+    <SignForm></SignForm>
   </div>
 </template>
 <script>
 // eslint-disable-next-line import/extensions
 import LoginBar from '@/components/LoginBar.vue';
 // eslint-disable-next-line import/extensions
-import LoginForm from '@/components/LoginForm.vue';
+import SignForm from '@/components/SignForm.vue';
 
 export default {
-  name: 'home',
+  name: 'SignIn',
   components: {
     LoginBar,
-    LoginForm,
+    SignForm,
   },
 };
 </script>
