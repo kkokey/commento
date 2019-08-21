@@ -1,20 +1,14 @@
 <template>
-  <div id="app">
-    <loginHeader />
-    <loginBody />
+  <div>
+    <menus></menus>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import loginHeader from "./components/loginHeader.vue";
-import loginBody from "./components/loginBody.vue";
-
+import Menus from "./components/Menus.vue";
 export default {
-  name: "app",
-  components: {
-    loginHeader,
-    loginBody
-  }
+  components: { Menus }
 };
 </script>
 
@@ -26,5 +20,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 </style>

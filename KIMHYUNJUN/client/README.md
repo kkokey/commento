@@ -1,4 +1,4 @@
-# Commento Project
+# client
 
 ## Project setup
 ```
