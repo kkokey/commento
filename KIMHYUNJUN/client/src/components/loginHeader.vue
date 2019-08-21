@@ -7,8 +7,9 @@
 </template>
 
 <script>
+const A = console.log('asdfsaf');
 export default {
-  name: "loginHeader"
+  name: 'loginHeader'
 };
 </script>
 
@@ -40,9 +41,3 @@ export default {
   margin-right: 20px;
 }
 </style>
-
-// Header
-// (left) Logo  (right) join / login
-// center
-// box-model
-// Footer
