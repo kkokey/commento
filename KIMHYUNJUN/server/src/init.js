@@ -12,5 +12,5 @@ function handleListening() {
 
 syncDb().then(_ => {
   console.log('Sync Database!');
-  app.listen(PORT, handleListening);
+  app.httpServer.listen(PORT, handleListening);
 });

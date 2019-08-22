@@ -18,7 +18,7 @@ export const getHome = async (req, res) => {
   }
 
   const name = user ? user.name : 'Please log-in';
-  res.json({ greeting: `Hello ${name}` });
+  res.json({ greeting: `Welcome to Chat N Chill, ${name}` });
 };
 
 export const postRegister = async (req, res) => {
@@ -26,7 +26,6 @@ export const postRegister = async (req, res) => {
     body: { name, email }
   } = req;
   const password = await bcrypt.hashSync(req.body.password, 8);
-  console.log(name, email, password);
 
   try {
     const user = await models.User.create({
@@ -51,9 +50,9 @@ export const postLogin = async (req, res) => {
     const user = await models.User.findOne({
       where: { email }
     });
-    if (!user) return res.status(404).send('User not found!');
+    if (!user) return res.status(404).json('User not found!');
     const result = await bcrypt.compareSync(password, user.password);
-    if (!result) return res.status(401).send('Password not valid!');
+    if (!result) return res.status(401).json('Password not valid!');
 
     const accessToken = await auth.accessToken(user.id);
     res.json({ accessToken });
