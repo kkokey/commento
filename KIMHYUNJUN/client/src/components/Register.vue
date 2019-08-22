@@ -1,12 +1,12 @@
 <template>
-  <div class="joinBox">
+  <div class="bg">
     <div class="box">
       <h2 class="title">Sign Up</h2>
       <form @submit.prevent="onSubmit(name, email, password)" class="box__form">
         <input type="text" v-model="email" placeholder="Email Address" />
         <input type="text" v-model="name" placeholder="Name for this site" />
         <input type="password" v-model="password" placeholder="Password" />
-        <input type="submit" value="register" />
+        <input type="submit" value="REGISTER" />
       </form>
     </div>
   </div>
@@ -39,54 +39,27 @@ export default {
 </script>
 
 <style scoped>
-input {
-  border: 0.5px solid rgba(0, 0, 0, 0.5);
-  width: 450px;
-  height: 40px;
-  border-radius: 8px;
-  font-size: 15px;
-  padding: 5px 15px 5px 15px;
-}
-
-input:focus {
-  outline: 0;
-}
-
-.joinBox {
-  display: flex;
-  justify-content: center;
-}
-
-.box {
-  display: flex;
-  margin-top: 200px;
-  width: 550px;
-  height: 550px;
-  border: 2px solid rgba(0, 0, 0, 0.9);
-  background-color: #fcfcfc;
-  border-radius: 20px;
-  flex-direction: column;
-  align-items: center;
-}
-
 .box .title {
   font-weight: 700;
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 50px;
   font-size: 50px;
 }
-
 .box .box__form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .box__form input {
   margin: 5px;
 }
-
 .box__form input:last-child {
   margin-top: 30px;
+  width: 480px;
+  height: 50px;
+  font-weight: 300;
+  background-image: linear-gradient(to bottom right, #0b4d33, #3d8567);
+  cursor: pointer;
+  color: #f7f7f7;
 }
 </style>

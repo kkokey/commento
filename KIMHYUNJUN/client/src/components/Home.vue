@@ -1,6 +1,9 @@
 <template>
-  <div class="greeting-box">
-    <h2>{{ greeting }}</h2>
+  <div class="bg">
+    <div class="box">
+      <h2>{{ greeting }}</h2>
+      <router-link to="/chat">👉🏻 Join chat room 👈🏻</router-link>
+    </div>
   </div>
 </template>
 
@@ -22,15 +25,18 @@ export default {
 </script>
 
 <style scoped>
-.greeting-box {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  font-size: 80px;
+.box h2 {
+  font-size: 35px;
+  font-weight: 700;
+  color: #222831;
+  margin-top: 100px;
+  margin-bottom: 20px;
 }
 
-.greeting-box h2 {
-  margin-top: 150px;
+.box a {
+  margin-top: 35px;
+  font-size: 35px;
+  font-weight: 300;
+  color: rgb(78, 41, 11);
 }
 </style>

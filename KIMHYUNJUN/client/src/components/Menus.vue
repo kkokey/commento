@@ -1,14 +1,16 @@
 <template>
-  <header class="header">
-    <router-link to="/" class="header__home">Home</router-link>
+  <div class="main">
+    <div class="main__router-box">
+      <router-link to="/" class="header__home">HOME</router-link>
 
-    <router-link to="/register" class="header__join">Sign Up</router-link>
+      <router-link to="/register" class="header__join">JOIN</router-link>
 
-    <a href v-if="isAuthenticated" @click.prevent="onClickLogout" class="header__login">Logout</a>
-    <router-link to="/login" v-else class="header__login">Login</router-link>
+      <a href v-if="isAuthenticated" @click.prevent="onClickLogout">LOGOUT</a>
+      <router-link to="/login" v-else class="header__login">LOGIN</router-link>
 
-    <router-link to="/me" class="header__me">Me</router-link>
-  </header>
+      <router-link to="/me" class="header__me">ME</router-link>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -28,38 +30,19 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  position: fixed;
-  width: 100%;
-  height: 80px;
-  background-color: rgba(0, 0, 0, 0.9);
-  /* background-image: linear-gradient(to top, #fdc830, #f37335); */
-  color: white;
+.main .main__router-box {
   display: flex;
-  font-size: 20px;
-  font-weight: 600;
+  justify-content: space-around;
   align-items: center;
-}
-
-.header__home {
-  margin-left: 15vh;
-  justify-self: flex-start;
-  margin-right: auto;
-}
-
-.header__join {
-  margin-right: 15vh;
-}
-
-.header__login {
-  margin-right: 15vh;
-}
-
-.header__logout {
-  margin-right: 15vh;
-}
-
-.header__me {
-  margin-right: 15vh;
+  font-size: 20px;
+  width: 900px;
+  height: 100px;
+  background-color: rgb(12, 78, 51);
+  margin-top: 90px;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.5) 5px 8px 16px -8px,
+    rgba(0, 0, 0, 0.043) 5px -6px 16px -6px;
+  border-bottom: 2px solid rgba(209, 209, 209, 0.918);
 }
 </style>

@@ -14,16 +14,12 @@ export default {
 
 <style>
 @import "./styles/reset.css";
+@import "./styles/main.css";
+@import url("https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,700&display=swap");
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-a {
-  text-decoration: none;
-  color: white;
+  color: #ebf1f7;
 }
 </style>
