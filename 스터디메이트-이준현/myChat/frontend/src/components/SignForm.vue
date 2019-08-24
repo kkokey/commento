@@ -47,16 +47,20 @@ export default {
   },
   methods: {
     singIn() {
-      // eslint-disable-next-line no-console
-      console.log('실행됨');
+      if (this.user.user_id === '' || this.user.password === null) {
+        // eslint-disable-next-line no-alert
+        alert('아이디/ 비밀번호를 입력해주세요');
+        return;
+      }
       this.$http
-        .post('/api/userSignin', {
+        .post('http://localhost:3000/signin', {
           user: this.user,
         })
         .then((Response) => {
           if (Response.data.success === 'success') {
             // eslint-disable-next-line no-alert
-            alert('성공');
+            alert('회원 가입 성공');
+            this.$router.push('/');
           }
         });
     },

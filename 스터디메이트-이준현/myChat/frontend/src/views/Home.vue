@@ -1,20 +1,20 @@
 <template>
   <div class="login">
-    <loginBar></loginBar>
     <loginForm></loginForm>
   </div>
 </template>
 <script>
-// eslint-disable-next-line import/extensions
-import LoginBar from '@/components/LoginBar.vue';
 // eslint-disable-next-line import/extensions
 import LoginForm from '@/components/LoginForm.vue';
 
 export default {
   name: 'home',
   components: {
-    LoginBar,
     LoginForm,
+  },
+  mounted() {
+    // eslint-disable-next-line no-console
+    console.dir(this.$store);
   },
 };
 </script>

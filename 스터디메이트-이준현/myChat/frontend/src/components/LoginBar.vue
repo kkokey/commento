@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar">
     <button class="btn">
-      <a v-on:click="mainPage()" href="#">Logo</a>
+      <a v-on:click="mainPage()" href="javascrtip:;">Logo</a>
     </button>
     <button class="btn">
-      <a href="#">Login/join</a>
+      <a href="javascrtip:;">Login/join</a>
     </button>
   </nav>
 </template>
