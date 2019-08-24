@@ -5,7 +5,7 @@
 
       <router-link to="/register" class="header__join">JOIN</router-link>
 
-      <a href v-if="isAuthenticated" @click.prevent="onClickLogout">LOGOUT</a>
+      <router-link v-if="isAuthenticated" to="/logout">LOGOUT</router-link>
       <router-link to="/login" v-else class="header__login">LOGIN</router-link>
 
       <router-link to="/me" class="header__me">ME</router-link>
@@ -20,11 +20,6 @@ export default {
     isAuthenticated() {
       return store.getters.isAuthenticated;
     }
-  },
-  methods: {
-    onClickLogout() {
-      store.dispatch("LOGOUT").then(() => this.$router.push("/"));
-    }
   }
 };
 </script>
@@ -35,10 +30,10 @@ export default {
   justify-content: space-around;
   align-items: center;
   font-size: 20px;
-  width: 900px;
+  width: 820px;
   height: 100px;
   background-color: rgb(12, 78, 51);
-  margin-top: 90px;
+  margin-top: 20px;
   margin-bottom: 3px;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.5) 5px 8px 16px -8px,

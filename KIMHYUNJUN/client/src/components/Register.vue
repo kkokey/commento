@@ -2,11 +2,12 @@
   <div class="bg">
     <div class="box">
       <h2 class="title">Sign Up</h2>
-      <form @submit.prevent="onSubmit(name, email, password)" class="box__form">
-        <input type="text" v-model="email" placeholder="Email Address" />
-        <input type="text" v-model="name" placeholder="Name for this site" />
-        <input type="password" v-model="password" placeholder="Password" />
-        <input type="submit" value="REGISTER" />
+      <form @submit.prevent="onSubmit(name, email, password, password2)" class="box__form">
+        <input type="text" v-model="email" placeholder="Email Address" required />
+        <input type="text" v-model="name" placeholder="Nickname for this site" required />
+        <input type="password" v-model="password" placeholder="Password" required />
+        <input type="password" v-model="password2" placeholder="Confirm password" required />
+        <input type="submit" value="JOIN" />
       </form>
     </div>
   </div>
@@ -19,20 +20,26 @@ export default {
       name: "",
       email: "",
       password: "",
+      password2: "",
       msg: ""
     };
   },
   methods: {
-    onSubmit(name, email, password) {
-      // Register Action
-      this.$store
-        .dispatch("REGISTER", { name, email, password })
-        .then(() => this.redirect())
-        .catch(({ message }) => (this.msg = message));
+    onSubmit(name, email, password, password2) {
+      if (password !== password2) {
+        alert("Please confirm your password");
+        return this.$router.push("/register");
+      } else {
+        // Register Action
+        this.$store
+          .dispatch("REGISTER", { name, email, password })
+          .then(() => this.redirect())
+          .catch(({ message }) => (this.msg = message));
+      }
     },
 
     redirect() {
-      this.$router.push("/");
+      this.$router.push("/login");
     }
   }
 };
@@ -41,7 +48,7 @@ export default {
 <style scoped>
 .box .title {
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 50px;
   font-size: 50px;
 }
@@ -62,4 +69,32 @@ export default {
   cursor: pointer;
   color: #f7f7f7;
 }
+
+/* .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} */
 </style>

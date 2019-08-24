@@ -18,6 +18,16 @@ const requireAuth = () => (to, from, next) => {
   }
 };
 
+const requestLogout = () => (to, from, next) => {
+  try {
+    store.dispatch("LOGOUT").then(() => {
+      next("/");
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
@@ -36,6 +46,10 @@ export default new Router({
       path: "/login",
       name: "Login",
       component: Login
+    },
+    {
+      path: "/logout",
+      beforeEnter: requestLogout()
     },
     {
       path: "/me",

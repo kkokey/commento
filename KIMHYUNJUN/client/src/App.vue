@@ -16,6 +16,7 @@ export default {
 @import "./styles/reset.css";
 @import "./styles/main.css";
 @import url("https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap&subset=korean");
 
 #app {
   -webkit-font-smoothing: antialiased;

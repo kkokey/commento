@@ -4,21 +4,20 @@ import bcrypt from 'bcryptjs';
 
 export const getHome = async (req, res) => {
   let user;
-  if (req.headers.authorization) {
+  if (req.headers.authorization !== undefined) {
     try {
       user = auth.verify(req.headers.authorization);
-      user = user
-        ? await models.User.findOne({
-            where: { id: user.id }
-          })
-        : null;
+      user = await models.User.findOne({
+        where: { id: user.id }
+      });
     } catch (err) {
       console.log(err);
     }
+  } else {
+    user = null;
   }
-
-  const name = user ? user.name : 'Please log-in';
-  res.json({ greeting: `Welcome to Chat N Chill, ${name}` });
+  const name = user ? user.name : 'Please LOGIN';
+  res.json({ greeting: `Welcome to Chat N Chill`, greeting2: name });
 };
 
 export const postRegister = async (req, res) => {
@@ -33,8 +32,7 @@ export const postRegister = async (req, res) => {
       email,
       password
     });
-    const accessToken = await auth.accessToken(user.id);
-    res.json({ user, accessToken });
+    res.json({ user });
   } catch (err) {
     console.log(err);
     return res.status(500).send('Server error!');
@@ -51,6 +49,7 @@ export const postLogin = async (req, res) => {
       where: { email }
     });
     if (!user) return res.status(404).json('User not found!');
+
     const result = await bcrypt.compareSync(password, user.password);
     if (!result) return res.status(401).json('Password not valid!');
 

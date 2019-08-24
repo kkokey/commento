@@ -18,18 +18,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', user);
 
 io.on('connection', socket => {
-  socket.on('newMessage', ({ message }) => {
-    socket.broadcast.emit('messageNotification', {
-      message,
-      nickname: socket.nickname || 'Anonymous'
-    });
+  socket.emit('CONNECTIONS', Object.keys(io.sockets.connected).length);
+  socket.on('NEW_MESSAGE', data => {
+    socket.broadcast.emit('MESSAGE', data);
   });
 
-  socket.on('setNickname', ({ nickname }) => {
-    socket.nickname = nickname;
+  socket.on('typing', data => {
+    socket.broadcast.emit('typing', data);
+  });
+
+  socket.on('stopTyping', () => {
+    socket.broadcast.emit('stopTyping');
   });
 });
-
-// http =>
 
 export default { app, httpServer };

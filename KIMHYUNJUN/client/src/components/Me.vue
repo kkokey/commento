@@ -16,8 +16,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      user: null,
-      accessLog: []
+      user: null
     };
   },
   created() {

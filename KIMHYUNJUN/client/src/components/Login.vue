@@ -3,8 +3,8 @@
     <div class="box">
       <h2 class="title">Welcome Bootcamp</h2>
       <form @submit.prevent="onSubmit(email, password)" class="box__form">
-        <input type="text" v-model="email" placeholder="Email Address" />
-        <input type="password" v-model="password" placeholder="Password" />
+        <input required type="text" v-model="email" placeholder="Email Address" />
+        <input required type="password" v-model="password" placeholder="Password" />
         <input type="submit" value="LOGIN" />
       </form>
     </div>
@@ -34,7 +34,6 @@ export default {
       if (search === "") {
         this.$router.push("/");
       } else {
-        console.log(search);
         const tokens = search.replace(/^\?/, "").split("&");
         const { returnPath } = tokens.reduce((qs, tkn) => {
           const pair = tkn.split("=");
@@ -51,7 +50,7 @@ export default {
 <style scoped>
 .box .title {
   font-weight: 700;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-bottom: 60px;
   font-size: 50px;
 }
