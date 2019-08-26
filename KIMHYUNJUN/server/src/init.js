@@ -1,5 +1,8 @@
 import app from './app';
 import syncDb from './sync-db';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
@@ -9,5 +12,5 @@ function handleListening() {
 
 syncDb().then(_ => {
   console.log('Sync Database!');
-  app.listen(PORT, handleListening);
+  app.httpServer.listen(PORT, handleListening);
 });

@@ -1,30 +1,26 @@
 <template>
-  <div id="app">
-    <loginHeader />
-    <loginBody />
+  <div>
+    <menus></menus>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import loginHeader from "./components/loginHeader.vue";
-import loginBody from "./components/loginBody.vue";
-
+import Menus from "./components/Menus.vue";
 export default {
-  name: "app",
-  components: {
-    loginHeader,
-    loginBody
-  }
+  components: { Menus }
 };
 </script>
 
 <style>
 @import "./styles/reset.css";
+@import "./styles/main.css";
+@import url("https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap&subset=korean");
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #ebf1f7;
 }
 </style>

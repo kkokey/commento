@@ -1,14 +1,15 @@
 import express from 'express';
-import { postRegister, postLogin } from './controller';
+import { getHome, postRegister, postLogin, getMe } from './controller';
+import auth from '../auth';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).send('This is an authentication server');
-});
+router.get('/', getHome);
 
 router.post('/register', postRegister);
 
 router.post('/login', postLogin);
+
+router.get('/me', auth.ensureAuth(), getMe);
 
 export default router;

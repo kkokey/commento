@@ -2,7 +2,7 @@ import models from './models';
 
 export default () => {
   const options = {
-    force: true
+    force: false
   };
   return models.sequelize.sync(options);
 };

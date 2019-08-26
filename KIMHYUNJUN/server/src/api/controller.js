@@ -1,9 +1,24 @@
 import models from '../models';
-import jwt from 'jsonwebtoken';
+import auth from '../auth';
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
 
-const SECRET_KEY = 'helloworld';
+export const getHome = async (req, res) => {
+  let user;
+  if (req.headers.authorization !== undefined) {
+    try {
+      user = auth.verify(req.headers.authorization);
+      user = await models.User.findOne({
+        where: { id: user.id }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    user = null;
+  }
+  const name = user ? user.name : 'Please LOGIN';
+  res.json({ greeting: `Welcome to Chat N Chill`, greeting2: name });
+};
 
 export const postRegister = async (req, res) => {
   const {
@@ -17,13 +32,7 @@ export const postRegister = async (req, res) => {
       email,
       password
     });
-    const expiresIn = 60 * 60;
-    const accessToken = await jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn });
-    res.status(200).send({
-      user,
-      access_token: accessToken,
-      expires_in: expiresIn
-    });
+    res.json({ user });
   } catch (err) {
     console.log(err);
     return res.status(500).send('Server error!');
@@ -34,24 +43,32 @@ export const postLogin = async (req, res) => {
   const {
     body: { email, password }
   } = req;
+
   try {
     const user = await models.User.findOne({
       where: { email }
     });
-    if (!user) return res.status(404).send('User not found!');
+    if (!user) return res.status(404).json('User not found!');
+
     const result = await bcrypt.compareSync(password, user.password);
-    if (!result) return res.status(401).send('Password not valid!');
+    if (!result) return res.status(401).json('Password not valid!');
 
-    const expiresIn = 60 * 60;
-    const accessToken = await jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn });
-
-    res.status(200).send({
-      user,
-      access_token: accessToken,
-      expires_in: expiresIn
-    });
+    const accessToken = await auth.accessToken(user.id);
+    res.json({ accessToken });
   } catch (err) {
     console.log(err);
     res.status(500).send('Server error!');
+  }
+};
+
+export const getMe = async (req, res) => {
+  const { id } = req.user;
+  try {
+    const user = await models.User.findOne({
+      where: { id }
+    });
+    res.json({ user });
+  } catch (err) {
+    console.log(err);
   }
 };
